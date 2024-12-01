@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Reserve Room
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <!-- Display the Room Details -->
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ room.image }}" alt="{{ room.name }}" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+            <h2>{{ room.name }}</h2>
+            <p>{{ room.description }}</p>
+            <hr>
+            <!-- Booking Form -->
+            <h4>Book the Room</h4>
+            <form method="post" action="/book">
+                <input type="hidden" name="room_id" value="{{ room.id }}">
+                <div class="mb-3">
+                    <label for="booking_date" class="form-label">Choose Booking Date:</label>
+                    <input type="date" id="booking_date" name="booking_date" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="start_time" class="form-label">Choose Start Time:</label>
+                    <select id="start_time" name="start_time" class="form-control" required>
+                        {% for hour in range(0, 24) %}
+                            {% for minute in [0, 15, 30, 45] %}
+                                {% set hour_12 = (hour - 1) % 12 + 1 %}
+                                {% set period = "AM" if hour < 12 else "PM" %}
+                                <option value="{{ "%02d:%02d" | format(hour, minute) }}">
+                                    {{ "%d:%02d %s" | format(hour_12, minute, period) }}
+                                </option>
+                            {% endfor %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="end_time" class="form-label">Choose End Time:</label>
+                    <select id="end_time" name="end_time" class="form-control" required>
+                        {% for hour in range(0, 24) %}
+                            {% for minute in [0, 15, 30, 45] %}
+                                {% set hour_12 = (hour - 1) % 12 + 1 %}
+                                {% set period = "AM" if hour < 12 else "PM" %}
+                                <option value="{{ "%02d:%02d" | format(hour, minute) }}">
+                                    {{ "%d:%02d %s" | format(hour_12, minute, period) }}
+                                </option>
+                            {% endfor %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Book Now</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    // Get the current date and time from the server
+    var currentDate = new Date("{{ current_time }}");
+
+    // Set the min attribute of the date and time input to prevent past dates/times
+    document.getElementById('booking_date').setAttribute('min', currentDate.toISOString().split('T')[0]);
+
+    // Adjust the time picker to only allow future times
+    var currentTime = currentDate.getHours() + ":" + currentDate.getMinutes();
+    document.getElementById('start_time').setAttribute('min', currentTime);
+    document.getElementById('end_time').setAttribute('min', currentTime);
+</script>
+{% endblock %}

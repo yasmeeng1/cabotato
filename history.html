@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Booking History
+{% endblock %}
+
+{% block main %}
+<h2>Your Booking History</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Room Name</th>
+            <th>Booking Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for booking in bookings %}
+        <tr>
+            <td>{{ booking.name }}</td>
+            <td>{{ booking.booking_date }}</td>
+            <td>{{ booking.start_time }}</td>
+            <td>{{ booking.end_time }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4">No bookings found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

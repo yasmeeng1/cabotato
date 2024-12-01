@@ -1,0 +1,157 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Music Page
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <!-- Header Section -->
+    <header class="text-center mb-5">
+        <h1 class="navbar-brand">Study Session</h1>
+        <p class="lead">STAY ON THIS PAGE TO LISTEN TO MUSIC AND TIME YOURSELF WHILE YOU WORK!</p>
+    </header>
+
+    <!-- Pomodoro Timer Section -->
+<section class="pomodoro-timer">
+    <h2 class="navbar-brand">Pomodoro Timer</h2>
+    <p class="lead">The Pomodoro Technique is a time management method where you work for 25 minutes then take a break for 5 minutes!</p>
+    <div id="timer" class="text-center timer-display">
+        25:00
+    </div>
+    <div class="text-center mt-4">
+        <button id="startButton" class="btn btn-primary">Start</button>
+        <button id="breakButton" class="btn btn-primary">Take a Break</button>
+        <button id="stopButton" class="btn btn-primary">Stop</button>
+        <button id="restartButton" class="btn btn-primary">Restart</button>
+    </div>
+</section>
+
+<!-- Pomodoro Timer Script -->
+<script>
+    let timer;
+    let isWorking = true; // true for work, false for break
+    let timeLeft = 25 * 60; // 25 minutes in seconds
+    let timerDisplay = document.getElementById("timer");
+    let startButton = document.getElementById("startButton");
+    let breakButton = document.getElementById("breakButton");
+    let stopButton = document.getElementById("stopButton");
+    let restartButton = document.getElementById("restartButton");
+
+    // Function to update timer display
+    function updateTimerDisplay() {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        if (seconds < 10) seconds = "0" + seconds; // Add leading zero for seconds
+        timerDisplay.textContent = minutes + ":" + seconds;
+    }
+
+    // Function to start or restart the timer
+    function startTimer() {
+    clearInterval(timer); // Clear any existing timer
+
+    startButton.disabled = true;
+    breakButton.style.display = "inline-block"; // Show the break button
+    stopButton.style.display = "inline-block"; // Show the stop button
+
+    timer = setInterval(function() {
+        timeLeft--;
+        updateTimerDisplay();
+
+        if (timeLeft <= 0) {
+            clearInterval(timer); // Stop the timer
+            timer = null; // Reset the timer variable
+            isWorking = !isWorking; // Switch between work and break
+            timeLeft = isWorking ? 25 * 60 : 5 * 60; // Set the next session time
+            startButton.disabled = false; // Enable the start button again
+        }
+    }, 1000);
+}
+
+    // Function to handle break time
+    function takeBreak() {
+        clearInterval(timer); // Stop the current timer
+        isWorking = false; // Start break
+        timeLeft = 5 * 60; // Set break time to 5 minutes
+        updateTimerDisplay(); // Update display to show break time
+        startTimer(); // Start break timer
+    }
+
+    // Function to stop the timer
+    function restartTimer() {
+        clearInterval(timer); // Restart the current timer
+        startButton.disabled = false; // Enable the start button
+        timeLeft = 25 * 60; // Reset time to 25 minutes for the next session
+        updateTimerDisplay(); // Update the display to show the reset time
+    }
+
+    function stopTimer() {
+        clearInterval(timer); // Stop the current timer
+        startButton.disabled = false; // Enable the start button
+         // Do not reset timeLeft
+        updateTimerDisplay(); // Update the display to show the current time
+    }
+
+    // Event listener for the start button
+    // Event listener for the start button
+    startButton.addEventListener("click", function() {
+        startTimer(); // Always start or resume the timer
+    });
+
+    // Event listener for the break button
+    breakButton.addEventListener("click", function() {
+        takeBreak(); // Trigger break function
+    });
+
+    // Event listener for the stop button
+    stopButton.addEventListener("click", function() {
+        stopTimer(); // Trigger stop function
+    });
+
+    // Event listener for the restart button
+    restartButton.addEventListener("click", function() {
+        restartTimer(); // Trigger restart function
+    });
+
+    // Initialize the timer display
+    updateTimerDisplay();
+</script>
+
+    <!-- Playlist section -->
+    <section class="pomodoro-timer">
+        <h2 class="navbar-brand">Music Options</h2>
+        <p class="lead"> Listen to some music (or a CS50 podcast) on Spotify while you study </p>
+    <div class="music-player">
+        <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWQRwui0ExPn?utm_source=generator"
+                width="100%" height="352"
+                frameBorder="0" allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+
+        <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/playlist/1WH6WVBwPBz35ZbWsgCpgr?utm_source=generator"
+                width="100%" height="352"
+                frameBorder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+
+        <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/playlist/1lcbYKyLFvyLb5rZXbVVYc?utm_source=generator"
+                width="100%" height="352"
+                frameBorder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+
+        <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/show/3MxtKWdpxTVvxnAYPDJuKV?utm_source=generator"
+                width="100%" height="352"
+                frameBorder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+    </div>
+    </section>
+{% endblock %}

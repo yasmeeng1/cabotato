@@ -1,0 +1,221 @@
+/* General Body Styling */
+body {
+    background-color: #FDF6F0; /* Soft pastel pinkish background */
+    font-family: 'Poppins', sans-serif; /* Change to a more playful font */
+    color: #333; /* Dark gray text for contrast */
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar Styling */
+.navbar, .navbar-collapse {
+    background-color: #FFB6C1 !important; /* Soft pink background */
+    border-bottom: 2px solid #FF69B4; /* Add a subtle bottom border */
+}
+
+.navbar-brand {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff !important; /* White text for contrast */
+    text-transform: uppercase; /* Make navbar brand text all caps for more personality */
+}
+
+.nav-link {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: #fff !important; /* White text for navbar links */
+    text-transform: uppercase; /* Add a playful touch with uppercase links */
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #FF69B4 !important; /* Soft pink hover effect */
+}
+
+/* Form Styling */
+form {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #FFB6C1;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Add a soft shadow to make the form stand out */
+}
+
+/* Make the input boxes bigger */
+.form-control {
+    width: 100%; /* Make input boxes full-width */
+    height: 50px;
+    border-radius: 10px; /* Round the edges for a softer look */
+    border: 1px solid #FFB6C1; /* Soft border color */
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #FF69B4; /* Focus effect with pink border */
+    outline: none;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #FF69B4; /* Soft pink background */
+    border-color: #FF69B4;
+    font-size: 18px;
+    padding: 12px 20px;
+    border-radius: 20px; /* Round button edges for a cuter look */
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #FFB6C1; /* Lighter pink on hover */
+    border-color: #FFB6C1;
+}
+
+/* Add a cute footer */
+footer {
+    background-color: #FFB6C1;
+    padding: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    border-top: 2px solid #FF69B4;
+}
+
+/* Add cute hover effect on images */
+img:hover {
+    transform: scale(1.05); /* Slightly zoom in on images */
+    transition: transform 0.3s ease;
+}
+
+/* Main container */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Header styles */
+header {
+    background-color: #FFB6C1; /* Soft pink */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #FF69B4;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #FF69B4;
+    margin-top: 10px;
+}
+
+/* Music Player Styling */
+.music-player {
+    margin-top: 20px;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.timer-container {
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+  }
+
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+}
+
+.pomodoro-timer {
+    background-color: #FFB6C1;
+    padding: 40px 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+.pomodoro-timer h2 {
+    font-size: 1.8rem;
+    color: #FF69B4;
+}
+
+#timer {
+    font-size: 2.5rem;
+    padding: 20px;
+    background-color: #FFB6C1;
+    border-radius: 10px;
+    color: white;
+    width: 200px;
+    margin: 20px auto;
+}
+
+button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+
+button:disabled {
+    background-color: #f4b6c1;
+}
+
+#startButton, #breakButton, #stopButton  {
+    background-color: #FF69B4;
+    border-color: #FF69B4;
+    color: white;
+}
+
+#startButton:hover, #breakButton:hover, #stopButton:hover{
+    background-color: #FFB6C1;
+}
+
+/* Music Player Section */
+.music-player {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 40px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.music-player iframe {
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.music-player iframe:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.pink-text {
+    color: pink;
+}
